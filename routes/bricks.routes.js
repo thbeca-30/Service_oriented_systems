@@ -76,5 +76,7 @@ router.get('/getBricks', bricksController.getBricks)
  */
 router.get('/getBricksForGraph', bricksController.getBricksForGraph)
 // router.get('/getAllForOne', bricksController.getAllForOne)
+router.post('/getBricksForGraphFilter', bricksController.getBricksForGraphFilter)
+router.post('/testMethod', bricksController.testMethod)
 
 module.exports = router

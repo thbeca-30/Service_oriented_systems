@@ -2,10 +2,11 @@ const {Discipline, Technical, Teacher} = require('../models/models')
 
 exports.createDiscipline = async(req, res) => {
     try{
-        let {name, zuns, hard_soft, prepod} = req.body
+        let {name, zuns, zunsOUT, hard_soft, prepod} = req.body
         zuns = zuns.split(',')
         hard_soft = hard_soft.split(',')
-        const discipline = await Discipline.create({name, zuns, hard_soft, prepod})
+        zunsOUT = zunsOUT.split(',')
+        const discipline = await Discipline.create({name, zuns, zunsOUT, hard_soft, prepod})
         res.status(201).json(discipline)
     }catch (e){
         res.status(500).json({message: e.message})
@@ -45,14 +46,17 @@ exports.getDiscipline = async (req,res) => {
 exports.updateDiscipline = async (req, res) => {
     try {
         //console.log(req.body)
-        let {name, zuns, hard_soft, prepod} = req.body
+        let {name, zuns, zunsOUT, hard_soft, prepod} = req.body
         if(typeof zuns === "string" || zuns instanceof String){
             zuns = zuns.split(',')
         }
         if(typeof hard_soft === "string" || hard_soft instanceof String){
             hard_soft = hard_soft.split(',')
         }
-        const discipline = await Discipline.update({name, zuns, hard_soft, prepod}, {where: {id: req.params.id}})
+        if(typeof zunsOUT === "string" || hard_soft instanceof String){
+            zunsOUT = zunsOUT.split(',')
+        }
+        const discipline = await Discipline.update({name, zuns, zunsOUT, hard_soft, prepod}, {where: {id: req.params.id}})
         console.log(discipline)
         if(discipline == 0){
             res.status(404).json({message: 'Дисциплина не найдена!'})

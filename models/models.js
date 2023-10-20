@@ -12,6 +12,7 @@ const Discipline = sequelize.define('discipline', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
     zuns: {type: DataTypes.ARRAY(DataTypes.STRING)},
+    zunsOUT: {type: DataTypes.ARRAY(DataTypes.STRING)},
     hard_soft: {type: DataTypes.ARRAY(DataTypes.STRING)},
     prepod: {type: DataTypes.STRING}
 })
@@ -33,7 +34,10 @@ const Brick = sequelize.define('brick', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
     number: {type: DataTypes.INTEGER},
-    full_name: {type: DataTypes.STRING}
+    full_name: {type: DataTypes.STRING},
+    zuns: {type: DataTypes.ARRAY(DataTypes.STRING)},
+    zunsOUT: {type: DataTypes.ARRAY(DataTypes.STRING)},
+    hard_soft: {type: DataTypes.ARRAY(DataTypes.STRING)}
 })
 
 module.exports = {
